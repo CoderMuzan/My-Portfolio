@@ -8,14 +8,13 @@
 
 body {
   color: white;
-  background: #081b29
+  background: #081b29;
 }
 
 ::-webkit-scrollbar{
     width: 10px;
 }
 ::-webkit-scrollbar-track{
-    /* background: #f1f1f1; */
     background: #081b29;
 }
 ::-webkit-scrollbar-thumb{
@@ -27,16 +26,6 @@ body {
     background: rgba(0, 238, 255, 0.142);
 }
 
-/* .logo {
-  position: relative;
-  font-size: 25px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  cursor: default;
-  opacity: 0;
-  animation: slideRight 1s ease forwards;
-} */
 /* Header Container */
 .header {
   position: fixed;
@@ -106,38 +95,16 @@ body {
   font-weight: 600;
 }
 
-/* Animations */
-@keyframes slideTop {
-  0% {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideRight {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
+/* HOME SECTION */
 .home {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
-  padding: 4.375rem 10% 0;
+  padding: 4.375rem 10% 2rem;
 }
 
 /* Wrapper to separate image and content */
@@ -146,23 +113,26 @@ body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 2rem;
+  gap: 3rem;
   flex-wrap: wrap;
 }
 
 /* Text Content */
 .home-content {
-  max-width: 600px;
+  max-width: 550px;
   flex: 1;
+  padding-right: 2rem;
 }
 
 .home-content h2 {
   font-size: 2rem;
   font-weight: 600;
+  opacity: 0;
+  animation: slideRight 1s ease forwards;
 }
 
 .home-content h1 {
-  font-size: clamp(1rem, 1rem + 5vw, 1.8rem);
+  font-size: clamp(1.5rem, 1rem + 5vw, 3rem);
   font-weight: 700;
   margin: -3px 0;
   opacity: 0;
@@ -178,6 +148,7 @@ body {
 .home-content .typewriter {
   font-size: clamp(1rem, 1rem + 5vw, 2.5rem);
   font-weight: 600;
+  margin: 10px 0;
 }
 
 .home-content .typewriter-text {
@@ -193,6 +164,11 @@ body {
   animation: blink 0.7s infinite;
   color: #0ef;
   font-weight: 600;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .home-content h3 {
@@ -214,9 +190,17 @@ body {
 }
 
 .home-content p {
-  font-size: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 1.5rem 0;
   opacity: 0;
   animation: slideLeft 1s ease forwards;
+  animation-delay: 1s;
+}
+
+.home-sci {
+  margin: 1.5rem 0;
 }
 
 .home-sci a {
@@ -231,7 +215,7 @@ body {
   border-radius: 50%;
   font-size: 1.25rem;
   color: #0ef;
-  margin: 1.875rem 0.9375rem 1.875rem 0;
+  margin-right: 0.9375rem;
   transition: 0.5s ease;
   opacity: 0;
   animation: slideLeft 1s ease forwards;
@@ -274,27 +258,110 @@ body {
 }
 
 .home-img img {
-  width: 21rem;      /* 320px */
-  height: 21rem;     /* 320px */
+  width: 21rem;
+  height: 21rem;
   object-fit: cover;
   border-radius: 50%;
   border: 0.25rem solid #0ef;
-  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 238, 255, 0.5);
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Remove or hide the home-imgHover element */
+.home-imgHover {
+  display: none;
+}
+
+/* Animations */
+@keyframes slideTop {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes slideBottom {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Responsive Layout */
 @media (max-width: 768px) {
+  .home {
+    padding: 4rem 5% 2rem;
+  }
+
   .home-wrapper {
     flex-direction: column-reverse;
     text-align: center;
+    gap: 1.5rem;
+  }
+
+  .home-content {
+    padding-right: 0;
+    max-width: 100%;
   }
 
   .home-img {
     margin-bottom: 2rem;
+    flex: 0 0 250px;
+  }
+
+  .home-img img {
+    width: 16rem;
+    height: 16rem;
   }
 
   .home-content p {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .home-sci {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 
@@ -308,54 +375,12 @@ body {
   .home-img img {
     max-width: 200px;
     width: 80vw;
-    height: auto;
+    height: 80vw;
     margin-bottom: 1rem;
   }
 }
 
-@keyframes slideRight {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes slideLeft {
-  0% {
-    transform: translateX(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes slideTop {
-  0% {
-    transform: translateY(100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-@keyframes slideBottom {
-  0% {
-    transform: translateY(-100px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-
+/* Footer Styles */
 footer {
   background: rgba(0, 238, 255, 0.153);
   padding: 5px 0;
@@ -400,6 +425,16 @@ footer .text p {
   animation: scroll-left 15s linear infinite;
 }
 
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Scroll to top/bottom buttons */
 .top {
   position: fixed;
   bottom: 2.1rem;
@@ -415,36 +450,25 @@ footer .text p {
   border-radius: 0.6rem;
 }
 
-.down { position: fixed; bottom: 2.1rem; left: 2.1rem; z-index: 999; } .down i { color: #000; background: #0ef; font-size: 20px; padding: 10px; border-radius: 0.6rem; }
+.down {
+  position: fixed;
+  bottom: 2.1rem;
+  left: 2.1rem;
+  z-index: 999;
+}
+
+.down i {
+  color: #000;
+  background: #0ef;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 0.6rem;
+}
+
 @media (max-width: 768px) {
-  .down {
+  .down, .top {
     bottom: 1rem;
-    right: 1rem;
     font-size: 1rem;
     padding: 0.5rem;
-  }
-}
-
-
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-/* Responsive Layout */
-@media (max-width: 768px) {
-  .home-wrapper {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-  .home-img {
-    margin-bottom: 2rem;
-  }
-  .home-content p {
-    font-size: 1rem;
   }
 }
